@@ -33,7 +33,6 @@ public class SpaceCadets7 {
         pixels = new int[witdh][height];
         pixelsContrast = new int[witdh][height];
         circles = new short[witdh][height][maxRadius];
-        
 
     }
 
@@ -121,7 +120,7 @@ public class SpaceCadets7 {
         }
     }
 
-    public void findBiggestCircle( int accuracy) {
+    public void findBiggestCircle(int accuracy) {
         int xMax, yMax, rMax, valueMax;
         xMax = yMax = rMax = -1;
         for (int i = 0; i < witdh; i++) {
@@ -141,10 +140,8 @@ public class SpaceCadets7 {
             }
         }
 
-       
     }
 
-    
     public void findBiggestCircle() {
         int xMax, yMax, rMax, valueMax;
         xMax = yMax = rMax = -1;
@@ -165,9 +162,8 @@ public class SpaceCadets7 {
             }
         }
 
-        
     }
-    
+
     public void drawCircle(int x, int y, int radius) {
         int circleX, circleY;
         for (int t = 0; t < 360; t++) {
@@ -349,25 +345,28 @@ public class SpaceCadets7 {
     public SpaceCadets7(BufferedImage input, BufferedImage output, int acc, int min, int max) {
         inputImage = input;
         outputImage = output;
-        if(accuracy != -10000)
-        accuracy = acc;
-        else{
+        if (accuracy != -10000) {
+            accuracy = acc;
+        } else {
             accuracy = 300;
         }
-       
+        int temp = Math.min(inputImage.getWidth() / 2 + 1, inputImage.getHeight() / 2 + 1);
         if (max != -10000) {
             maxRadius = max;
-        }else{
-            maxRadius = Math.min(inputImage.getWidth()/2+1, inputImage.getHeight()/2+1);
+        } else {
+            maxRadius = temp;
         }
-         System.out.println(maxRadius);
-        
+        if (max > temp) {
+            maxRadius = temp;
+        }
+        System.out.println(maxRadius);
+
         if (min != -10000) {
             minRadius = min;
-        } else{
+        } else {
             minRadius = 3;
         }
-              
+
         runSequence();
     }
 
@@ -382,11 +381,11 @@ public class SpaceCadets7 {
          */
 
     }
-    
-    public BufferedImage getImage(){
+
+    public BufferedImage getImage() {
         return outputImage;
     }
-    
+
     public void findCirclesByRow(int i) {
         int a, b;
         for (int j = 0; j < height; j++) {
